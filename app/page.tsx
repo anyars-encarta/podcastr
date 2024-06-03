@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Button } from "@/components/ui/button"
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className='mt-9 flex fle-col gap-9'>
+      <section className='flex flex-col gap-5'>
+        <h1 className='text-20 font-bold text-white-1'>Trending Podcasts</h1>
+      </section>
+    </div>
   )
 }
 
