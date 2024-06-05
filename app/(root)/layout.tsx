@@ -20,8 +20,8 @@ export default function RootLayout({
               <MobileNav />
             </div>
 
-            <div>
-              Toaster (notification popups)
+            <div className='flex flex-col md:pb-14'>
+              Toaster
               {children}
             </div>
           </div>
