@@ -139,7 +139,7 @@ const CreatePodcast = () => {
               >
                 {isSubmitting ? (
                   <>
-                    Submitting...
+                    Submitting
                     <Loader size={20} className='ml-2 animate-spin' />
                   </>
                 ) : (
