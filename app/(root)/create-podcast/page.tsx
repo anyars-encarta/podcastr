@@ -26,6 +26,7 @@ import {
 import { cn } from "@/lib/utils"
 import { voiceDetails } from "@/constants/index"
 import { useState } from "react"
+import { Textarea } from "@/components/ui/textarea"
 
 // Define a schema for the form.
 const formSchema = z.object({
@@ -114,7 +115,7 @@ const CreatePodcast = () => {
                 <FormItem className='flex flex-col gap-2.5'>
                   <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
                   <FormControl>
-                    <TextArea className='input-class focus-visible:ring-orange-1' placeholder="Encarta Podcast" {...field} />
+                    <Textarea className='input-class focus-visible:ring-orange-1' placeholder="Write a short podcast description" {...field} />
                   </FormControl>
                   <FormMessage className='text-white-1' />
                 </FormItem>
