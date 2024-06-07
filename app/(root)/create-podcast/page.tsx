@@ -87,25 +87,39 @@ const CreatePodcast = () => {
                   <SelectValue placeholder="Select AI Voice" className='placeholder:text-gray-1' />
                 </SelectTrigger>
                 <SelectContent className='text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1'>
-                  {voiceDetails.map(({ id, name }: {id: number, name: string}) => (
+                  {voiceDetails.map(({ id, name }: { id: number, name: string }) => (
                     <SelectItem
                       key={id}
                       value={name}
                       className='capitalize focus:bg-orange-1'
-                      >
+                    >
                       {name}
                     </SelectItem>
                   ))}
                 </SelectContent>
-                  {voiceType && (
-                    <audio
+                {voiceType && (
+                  <audio
                     src={`/${voiceType}.mp3`}
                     autoPlay
                     className='hidden'
-                    />
-                  )}
+                  />
+                )}
               </Select>
             </div>
+
+            <FormField
+              control={form.control}
+              name="podcastDescription"
+              render={({ field }) => (
+                <FormItem className='flex flex-col gap-2.5'>
+                  <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
+                  <FormControl>
+                    <TextArea className='input-class focus-visible:ring-orange-1' placeholder="Encarta Podcast" {...field} />
+                  </FormControl>
+                  <FormMessage className='text-white-1' />
+                </FormItem>
+              )}
+            />
           </div>
 
           {/* <Button type="submit">Submit</Button> */}
