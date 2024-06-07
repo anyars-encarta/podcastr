@@ -27,6 +27,8 @@ import { cn } from "@/lib/utils"
 import { voiceDetails } from "@/constants/index"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
+import GeneratePodcast from "@/components/GeneratePodcast"
+import GenerateThumbnail from "@/components/GenerateThumbnail"
 
 // Define a schema for the form.
 const formSchema = z.object({
@@ -123,7 +125,20 @@ const CreatePodcast = () => {
             />
           </div>
 
-          {/* <Button type="submit">Submit</Button> */}
+          <div className='flex flex-col pt-10'>
+            <GeneratePodcast />
+
+            <GenerateThumbnail />
+
+            <div className='mt-10 w-full'>
+              <Button
+                type="submit"
+                className='text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1'
+              >
+                Submit
+              </Button>
+            </div>
+          </div>
         </form>
       </Form>
     </section>
