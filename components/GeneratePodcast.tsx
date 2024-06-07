@@ -8,7 +8,7 @@ import { Loader } from 'lucide-react'
 const GeneratePodcast = ({ setAudioStorageId, setAudio, voiceType, audio, voicePrompt, setVoicePrompt, setAudioDuration
 }: GeneratePodcastProps
 ) => {
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isGenerating, setIsGenerating] = useState(false);
 
     return (
         <div>
@@ -26,19 +26,21 @@ const GeneratePodcast = ({ setAudioStorageId, setAudio, voiceType, audio, voiceP
             </div>
 
             <div className='mt-5 w-full max-w-[200px]'>
-            <Button
-                className='text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-black-1'
-              >
-                {isSubmitting ? (
-                  <>
-                    Generating podcast
-                    <Loader size={20} className='ml-2 animate-spin' />
-                  </>
-                ) : (
-                  'Generate Podcast'
-                )}
-              </Button>
+                <Button
+                    className='text-16 bg-orange-1 py-4 font-bold text-white-1'
+                >
+                    {isGenerating ? (
+                        <>
+                            Generating podcast
+                            <Loader size={20} className='ml-2 animate-spin' />
+                        </>
+                    ) : (
+                        'Generate Podcast'
+                    )}
+                </Button>
             </div>
+
+            
         </div>
     )
 }
