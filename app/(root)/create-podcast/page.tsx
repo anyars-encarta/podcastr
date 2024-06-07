@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
 import { voiceDetails } from "@/constants/index"
+import { useState } from "react"
 
 // Define a schema for the form.
 const formSchema = z.object({
@@ -34,6 +35,8 @@ const formSchema = z.object({
 })
 
 const CreatePodcast = () => {
+  const [voiceType, setVoiceType] = useState<string | null>(null);
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -79,7 +82,7 @@ const CreatePodcast = () => {
                 Select AI Voice
               </Label>
 
-              <Select>
+              <Select onValueChange={(e) => setVoiceType(e)}>
                 <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1')}>
                   <SelectValue placeholder="Select AI Voice" className='placeholder:text-gray-1' />
                 </SelectTrigger>
@@ -94,6 +97,13 @@ const CreatePodcast = () => {
                     </SelectItem>
                   ))}
                 </SelectContent>
+                  {voiceType && (
+                    <audio
+                    src={`/${voiceType}.mp3`}
+                    autoPlay
+                    className='hidden'
+                    />
+                  )}
               </Select>
             </div>
           </div>
