@@ -73,9 +73,19 @@ const CreatePodcast = () => {
 
             <div className='flex flex-col gap-2.5'>
               <Label className='text-16 font-bold text-white-1'>
-                  Select AI Voice
+                Select AI Voice
               </Label>
 
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Theme" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Light</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
