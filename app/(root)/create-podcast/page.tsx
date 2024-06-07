@@ -30,23 +30,38 @@ import { Textarea } from "@/components/ui/textarea"
 import GeneratePodcast from "@/components/GeneratePodcast"
 import GenerateThumbnail from "@/components/GenerateThumbnail"
 import { Loader } from "lucide-react"
+import { Id } from "@/convex/_generated/dataModel"
 
 // Define a schema for the form.
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  podcastTitle: z.string().min(2, {
+    message: "Podcast Titles must be at least 2 characters.",
+  }),
+  podcastDescription: z.string().min(2, {
+    message: "Podcast Descriptions must be at least 2 characters.",
   }),
 })
 
 const CreatePodcast = () => {
+  const [imagePrompt, setImagePrompt] = useState('');
+  const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(null);
+  const [imageURL, setImageURL] = useState('');
+
+  const [audioURL, setAudioURL] = useState('');
+  const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(null);
+  const [audioDuration, setAudioDuration] = useState(0);
+
   const [voiceType, setVoiceType] = useState<string | null>(null);
+  const [voicePrompt, setVoicePrompt] = useState('');
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      podcastTitle: "",
+      podcastDescription: "",
     },
   })
 
@@ -75,7 +90,7 @@ const CreatePodcast = () => {
                 <FormItem className='flex flex-col gap-2.5'>
                   <FormLabel className="text-16 font-bold text-white-1">Podcast Title</FormLabel>
                   <FormControl>
-                    <Input className='input-class focus-visible:ring-orange-1' placeholder="Encarta Podcast" {...field} />
+                    <Input className='input-class focus-visible:ring-offset-orange-1' placeholder="Encarta Podcast" {...field} />
                   </FormControl>
                   <FormMessage className='text-white-1' />
                 </FormItem>
@@ -88,10 +103,10 @@ const CreatePodcast = () => {
               </Label>
 
               <Select onValueChange={(e) => setVoiceType(e)}>
-                <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1')}>
+                <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1 focus-visible:ring-offset-orange-1')}>
                   <SelectValue placeholder="Select AI Voice" className='placeholder:text-gray-1' />
                 </SelectTrigger>
-                <SelectContent className='text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1'>
+                <SelectContent className='text-16 border-none bg-black-1 font-bold text-white-1'>
                   {voiceDetails.map(({ id, name }: { id: number, name: string }) => (
                     <SelectItem
                       key={id}
@@ -119,7 +134,7 @@ const CreatePodcast = () => {
                 <FormItem className='flex flex-col gap-2.5'>
                   <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
                   <FormControl>
-                    <Textarea className='input-class focus-visible:ring-orange-1' placeholder="Write a short podcast description" {...field} />
+                    <Textarea className='input-class focus-visible:ring-offset-orange-1' placeholder="Write a short podcast description" {...field} />
                   </FormControl>
                   <FormMessage className='text-white-1' />
                 </FormItem>
@@ -128,7 +143,15 @@ const CreatePodcast = () => {
           </div>
 
           <div className='flex flex-col pt-10'>
-            <GeneratePodcast />
+            <GeneratePodcast
+            setAudioStorageId={setAudioStorageId}
+            setAudio={setAudioURL}
+            voiceType={voiceType}
+            audio={audioURL}
+            voicePrompt={voicePrompt}
+            setVoicePrompt={setVoicePrompt}
+            setAudioDuration={setAudioDuration}
+            />
 
             <GenerateThumbnail />
 
