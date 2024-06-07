@@ -23,7 +23,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { cn } from "@/lib/utils"
+import { voiceDetails } from "@/constants/index"
 
+// Define a schema for the form.
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -77,13 +80,19 @@ const CreatePodcast = () => {
               </Label>
 
               <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Theme" />
+                <SelectTrigger className={cn('text-16 w-full border-none bg-black-1 text-gray-1')}>
+                  <SelectValue placeholder="Select AI Voice" className='placeholder:text-gray-1' />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
-                  <SelectItem value="system">System</SelectItem>
+                <SelectContent className='text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1'>
+                  {voiceDetails.map(({ id, name }: {id: number, name: string}) => (
+                    <SelectItem
+                      key={id}
+                      value={name}
+                      className='capitalize focus:bg-orange-1'
+                      >
+                      {name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
