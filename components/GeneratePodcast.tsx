@@ -5,10 +5,17 @@ import { Textarea } from './ui/textarea'
 import { Button } from './ui/button'
 import { Loader } from 'lucide-react'
 
-const GeneratePodcast = ({ setAudioStorageId, setAudio, voiceType, audio, voicePrompt, setVoicePrompt, setAudioDuration
-}: GeneratePodcastProps
-) => {
-    const [isGenerating, setIsGenerating] = useState(false);
+const useGeneratePodcast = (props: GeneratePodcastProps) => {
+    // Logic for podcast generation
+
+    return {
+        isGenerating: false,
+        generatePodcast: () => {}
+    }
+}
+
+const GeneratePodcast = (props: GeneratePodcastProps) => {
+    const {isGenerating, generatePodcast} = useGeneratePodcast(props);
 
     return (
         <div>
@@ -20,8 +27,8 @@ const GeneratePodcast = ({ setAudioStorageId, setAudio, voiceType, audio, voiceP
                     className='input-class font-light focus-visible:ring-offset-orange-1'
                     placeholder='Provide text to generate audio'
                     rows={5}
-                    value={voicePrompt}
-                    onChange={(e) => setVoicePrompt(e.target.value)}
+                    value={props.voicePrompt}
+                    onChange={(e) => props.setVoicePrompt(e.target.value)}
                 />
             </div>
 
@@ -40,7 +47,15 @@ const GeneratePodcast = ({ setAudioStorageId, setAudio, voiceType, audio, voiceP
                 </Button>
             </div>
 
-            
+            {props.audio && (
+                <audio
+                    controls
+                    src={props.audio}
+                    autoPlay
+                    className='mt-5'
+                    onLoadedMetadata={(e) => props.setAudioDuration(e.currentTarget.duration)}
+                />
+            )}
         </div>
     )
 }
