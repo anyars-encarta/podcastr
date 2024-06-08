@@ -5,17 +5,35 @@ import { Textarea } from './ui/textarea'
 import { Button } from './ui/button'
 import { Loader } from 'lucide-react'
 
-const useGeneratePodcast = (props: GeneratePodcastProps) => {
-    // Logic for podcast generation
+const useGeneratePodcast = ({
+    setAudio, voiceType, voicePrompt, setAudioStorageId
+}: GeneratePodcastProps) => {
+    const [isGenerating, setIsGenerating] = useState(false);
 
-    return {
-        isGenerating: false,
-        generatePodcast: () => {}
-    }
+    // Logic for podcast generation
+    const generatePodcast = async () => {
+        setIsGenerating(true);
+        setAudio('');
+
+        if (!voicePrompt) {
+            // TODO: show error message
+            return setIsGenerating(false);
+        }
+
+        try {
+            
+        } catch (e) {
+            console.error('Error generating podcast', e)
+            // TODO: show error message
+            setIsGenerating(false);
+        }
+    };
+
+    return { isGenerating, generatePodcast }
 }
 
 const GeneratePodcast = (props: GeneratePodcastProps) => {
-    const {isGenerating, generatePodcast} = useGeneratePodcast(props);
+    const { isGenerating, generatePodcast } = useGeneratePodcast(props);
 
     return (
         <div>
