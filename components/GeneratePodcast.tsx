@@ -32,7 +32,9 @@ const useGeneratePodcast = ({
             })
 
             const blob = new Blob([response], { type: '/audio/mpeg'});
-            const fileName = `podcast-${}`
+            const fileName = `podcast-${uuidv4()}.mp3`
+            const file = new File([blob], fileName, { type: 'audio/mpeg' });
+
         } catch (e) {
             console.error('Error generating podcast', e)
             // TODO: show error message
