@@ -1,8 +1,18 @@
-import React from 'react'
+import { Button } from './ui/button'
 
 const GenerateThumbnail = () => {
   return (
-    <div>GenerateThumbnail</div>
+    <>
+      <div className='generate_thumbnail'>
+        <Button
+          type='button'
+          variant='plain'
+          className='bg-black-6'
+        >
+
+        </Button>
+      </div>
+    </>
   )
 }
 
