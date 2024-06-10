@@ -53,7 +53,7 @@ const CreatePodcast = () => {
 
   const [voiceType, setVoiceType] = useState<string | null>(null);
   const [voicePrompt, setVoicePrompt] = useState('');
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 1. Define your form.
@@ -144,16 +144,22 @@ const CreatePodcast = () => {
 
           <div className='flex flex-col pt-10'>
             <GeneratePodcast
-            setAudioStorageId={setAudioStorageId}
-            setAudio={setAudioURL}
-            voiceType={voiceType!}
-            audio={audioURL}
-            voicePrompt={voicePrompt}
-            setVoicePrompt={setVoicePrompt}
-            setAudioDuration={setAudioDuration}
+              setAudioStorageId={setAudioStorageId}
+              setAudio={setAudioURL}
+              voiceType={voiceType!}
+              audio={audioURL}
+              voicePrompt={voicePrompt}
+              setVoicePrompt={setVoicePrompt}
+              setAudioDuration={setAudioDuration}
             />
 
-            <GenerateThumbnail />
+            <GenerateThumbnail
+              setImage={setImageURL}
+              setImageStorageId={setImageStorageId}
+              image={imageURL}
+              imagePrompt={imagePrompt}
+              setImagePrompt={setImagePrompt}
+            />
 
             <div className='mt-10 w-full'>
               <Button
