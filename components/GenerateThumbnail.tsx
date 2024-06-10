@@ -75,7 +75,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
           </div>
         </div>
       ) : (
-        <div className='image_div' onClick={() => imageRef?.current?.click}>
+        <div className='image_div' onClick={() => imageRef?.current?.click()}>
           <Input
             type='file'
             className='hidden'
