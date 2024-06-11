@@ -20,6 +20,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
 
   const generateUploadUrl = useMutation(api.files.generateUploadUrl)
   const { startUpload } = useUploadFiles(generateUploadUrl)
+  const getImageUrl = useMutation(api.podcasts.getUrl);
 
   const handleImage = async (blob: Blob, fileName: string) => {
     setIsImageLoading(true);
@@ -32,8 +33,6 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
       const storageId = (uploaded[0].response as any).storageId
 
       setImageStorageId(storageId);
-
-      const getImageUrl = useMutation(api.podcasts.getUrl);
 
       const imageUrl = await getImageUrl({ storageId })
       setImage(imageUrl!);
