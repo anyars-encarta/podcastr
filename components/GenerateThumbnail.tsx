@@ -7,15 +7,67 @@ import { Loader } from 'lucide-react';
 import { GenerateThumbnailProps } from '@/types';
 import { Input } from './ui/input';
 import Image from 'next/image';
+import { useToast } from "@/components/ui/use-toast";
+import { useMutation } from 'convex/react';
+import { useUploadFiles } from '@xixixao/uploadstuff/react';
+import { api } from '@/convex/_generated/api';
 
 const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, setImagePrompt }: GenerateThumbnailProps) => {
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const imageRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
 
-  const generateImage = async () => {
+  const generateUploadUrl = useMutation(api.files.generateUploadUrl)
+  const { startUpload } = useUploadFiles(generateUploadUrl)
 
-  };
+  const handleImage = async (blob: Blob, fileName: string) => {
+    setIsImageLoading(true);
+    setImage('');
+
+    try {
+      const file = new File([blob], fileName, { type: 'image/png' });
+
+      const uploaded = await startUpload([file]);
+      const storageId = (uploaded[0].response as any).storageId
+
+      setImageStorageId(storageId);
+
+      const getImageUrl = useMutation(api.podcasts.getUrl);
+
+      const imageUrl = await getImageUrl({ storageId })
+      setImage(imageUrl!);
+      setIsImageLoading(false);
+
+      toast({ title: "Thumbnail generated susscessfully." })
+    } catch (e) {
+      console.log(e)
+      toast({
+        title: 'Error generating thumbnail',
+        variant: 'destructive'
+      })
+    }
+  }
+
+  const generateImage = async () => { };
+
+  const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    try {
+      const files = e.target.files;
+      if(!files) return;
+
+      const file = files[0];
+      const blob = await file.arrayBuffer()
+      .then((ab) => new Blob([ab]));
+
+      handleImage(blob, file.name);
+    } catch (e) {
+      console.log(e)
+      toast({ title: 'Error uploading image', variant: 'destructive'})
+    }
+  }
 
   return (
     <>
@@ -80,6 +132,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
             type='file'
             className='hidden'
             ref={imageRef}
+            onChange={(e) => uploadImage(e)}
           />
 
           {!isImageLoading ? (
