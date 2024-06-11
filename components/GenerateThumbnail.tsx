@@ -41,11 +41,11 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
       setImage(imageUrl!);
       setIsImageLoading(false);
 
-      toast({ title: "Thumbnail generated susscessfully." })
+      toast({ title: "Image uploaded susscessfully." })
     } catch (e) {
       console.log(e)
       toast({
-        title: 'Error generating thumbnail',
+        title: 'Error uploading image',
         variant: 'destructive'
       })
     }
@@ -57,7 +57,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
       const blob = new Blob([response], { type: 'image/png' });
       handleImage(blob, `thumbnail-${uuidv4()}.png`);
 
-      toast({ title: "Image generated susscessfully." })
+      toast({ title: "Thumbnail generated susscessfully." })
     } catch (e) {
       console.log(e);
       toast({
