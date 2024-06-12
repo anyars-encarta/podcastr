@@ -15,13 +15,14 @@ const Home = () => {
         <h1 className='text-20 font-bold text-white-1'>Trending Podcasts</h1>
 
         <div className='podcast_grid'>
-          {trendingPodcasts?.map(({ _id, podcastTitle, podcastDescription, imgURL }) => (
+          {trendingPodcasts?.map(({ _id, podcastTitle, podcastDescription, imgURL, views }) => (
             <PodcastCard
               key={_id}
               imgURL={imgURL}
               title={podcastTitle}
               description={podcastDescription}
               podcastId={_id}
+              views={views}
             />
           ))}
         </div>
