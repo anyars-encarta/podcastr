@@ -2,12 +2,14 @@
 
 import { api } from '@/convex/_generated/api'
 import { Id } from '@/convex/_generated/dataModel'
-import { trendingPodcasts } from '@/constants/index'
 import { useQuery } from 'convex/react'
 import Image from 'next/image'
 import React from 'react'
 import PodcastDetailPlayer from '@/components/PodcastDetailPlayer'
 import LoaderSpinner from '@/components/LoaderSpinner'
+// import { trendingPodcasts } from '@/constants';
+import PodcastCard from '@/components/PodcastCard'
+import EmptyState from '@/components/EmptyState'
 
 const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'podcasts'> } }) => {
     const podcast = useQuery(api.podcasts.getPodcastById, { podcastId })
@@ -54,9 +56,26 @@ const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'po
             <section className='mt-8 flex flex-col gap-5'>
                 <h1 className='text-20 font-bold text-white-1'>Similar Podcasts</h1>
 
-
+                {similarPodcasts && similarPodcasts.length > 0 ? (
+                    <div className='podcast_grid'>
+                    {similarPodcasts?.map(({ _id, podcastTitle, podcastDescription, imgURL, views }) => (
+                      <PodcastCard
+                        key={_id}
+                        imgURL={imgURL}
+                        title={podcastTitle}
+                        description={podcastDescription}
+                        podcastId={_id}
+                        views={views}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                    <>
+                        <EmptyState />
+                    </>
+                )}
             </section>
-        </section>
+        </section >
     )
 }
 

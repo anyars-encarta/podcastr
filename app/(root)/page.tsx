@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PodcastCard from '@/components/PodcastCard';
-import { trendingPodcasts } from '@/constants';
+// import { trendingPodcasts } from '@/constants';
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 const Home = () => {
-  // const trendingPodcasts = useQuery(api.podcasts.getTrendingPodcasts);
+  const trendingPodcasts = useQuery(api.podcasts.getTrendingPodcasts);
 
   return (
     <div className='mt-9 flex fle-col gap-9'>
