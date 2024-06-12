@@ -14,7 +14,9 @@ const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'po
 
     const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, { podcastId })
 
-    if (!similarPodcasts || !podcast) return <LoaderSpinner />
+    if (!similarPodcasts || !podcast) {
+        return <LoaderSpinner />
+    }
 
     return (
         <section className='flex w-full flex-col'>
