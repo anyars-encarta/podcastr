@@ -86,7 +86,7 @@ export const trendingPodcasts = [
   },
   {
     _id: 6,
-    podcastTitle: "Syntax ",
+    podcastTitle: "Syntax",
     podcastDescription: "Join Michelle Obama in conversation",
     imgURL:
       "https://lovely-flamingo-139.convex.cloud/api/storage/b8ea40c7-aafb-401a-9129-73c515a73ab5",
