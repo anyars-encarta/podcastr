@@ -58,20 +58,24 @@ const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'po
 
                 {similarPodcasts && similarPodcasts.length > 0 ? (
                     <div className='podcast_grid'>
-                    {similarPodcasts?.map(({ _id, podcastTitle, podcastDescription, imgURL, views }) => (
-                      <PodcastCard
-                        key={_id}
-                        imgURL={imgURL}
-                        title={podcastTitle}
-                        description={podcastDescription}
-                        podcastId={_id}
-                        views={views}
-                      />
-                    ))}
-                  </div>
+                        {similarPodcasts?.map(({ _id, podcastTitle, podcastDescription, imgURL, views }) => (
+                            <PodcastCard
+                                key={_id}
+                                imgURL={imgURL}
+                                title={podcastTitle}
+                                description={podcastDescription}
+                                podcastId={_id}
+                                views={views}
+                            />
+                        ))}
+                    </div>
                 ) : (
                     <>
-                        <EmptyState />
+                        <EmptyState
+                            title='No similar podcasts found'
+                            buttonLink='/discover'
+                            buttonText='Discover more podcasts'
+                        />
                     </>
                 )}
             </section>
