@@ -24,7 +24,9 @@ const RightSidebar = () => {
       </SignedIn>
 
       <section>
-        <Header />
+        <Header 
+        headerTitle='Fans Like You'
+        />
         <Carousel />
       </section>
     </section>
