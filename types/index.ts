@@ -88,15 +88,15 @@ export interface LatestPodcastCardProps {
 }
 
 export interface PodcastDetailPlayerProps {
-  audioUrl: string;
+  audioURL: string;
   podcastTitle: string;
   author: string;
   isOwner: boolean;
-  imageUrl: string;
+  imgURL: string;
   podcastId: Id<"podcasts">;
   imageStorageId: Id<"_storage">;
   audioStorageId: Id<"_storage">;
-  authorImageUrl: string;
+  authorImgURL: string;
   authorId: string;
 }
 

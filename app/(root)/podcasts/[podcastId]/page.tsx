@@ -18,7 +18,7 @@ const PodcastDetails = ({ params: { podcastId } }: { params: { podcastId: Id<'po
 
     const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, { podcastId })
 
-    const isOwner = user?.id === podcast?.authorsId
+    const isOwner = user?.id === podcast?.authorId
 
     if (!similarPodcasts || !podcast) {
         return <LoaderSpinner />
