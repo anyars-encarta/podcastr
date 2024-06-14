@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PodcastCard from '@/components/PodcastCard';
-import { podcastData } from '@/constants';
+// import { trendingPodcasts } from '@/constants';
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
@@ -15,13 +15,14 @@ const Home = () => {
         <h1 className='text-20 font-bold text-white-1'>Trending Podcasts</h1>
 
         <div className='podcast_grid'>
-          {trendingPodcasts?.map(({ _id, podcastTitle, podcastDescription, imgURL }) => (
+          {trendingPodcasts?.map(({ _id, podcastTitle, podcastDescription, imgURL, views }) => (
             <PodcastCard
               key={_id}
               imgURL={imgURL}
               title={podcastTitle}
               description={podcastDescription}
               podcastId={_id}
+              views={views}
             />
           ))}
         </div>
