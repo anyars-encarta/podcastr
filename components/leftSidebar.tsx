@@ -34,11 +34,19 @@ const LeftSidebar = () => {
 
             <SignedOut>
                 <div className='flex-center w-full pb-14 max-lg:px-4 lg:pr-8'>
-                    <Button>
+                    <Button asChild className='text-16 w-full bg-orange-1 font-extrabold'>
                         <Link href='/sign-in'>Sign In</Link>
                     </Button>
                 </div>
             </SignedOut>
+
+            <SignedIn>
+                <div className='flex-center w-full pb-14 max-lg:px-4 lg:pr-8'>
+                    <Button asChild className='text-16 w-full bg-orange-1 font-extrabold'>
+                        <Link href='/sign-in'>Sign Out</Link>
+                    </Button>
+                </div>
+            </SignedIn>
         </section>
     )
 }
