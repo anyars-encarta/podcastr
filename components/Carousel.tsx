@@ -3,24 +3,22 @@ import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
 import { DotButton, useDotButton } from './EmblaCarouselDotButton'
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
+import { CarouselProps } from '@/types'
+import { useRouter } from 'next/navigation'
 
-type PropType = {
-  slides: number[]
-  options?: EmblaOptionsType
-}
+const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
+    const router = useRouter();
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
     const autoplay = emblaApi?.plugins()?.autoplay
-    if (!autoplay) return
+    if (!autoplay || !("stopOnInteraction" in autoplay.options)) return
 
     const resetOrStop =
       autoplay.options.stopOnInteraction === false
-        ? autoplay.reset
-        : autoplay.stop
+        ? (autoplay.reset as () => void)
+        : (autoplay.stop as () => void)
 
     resetOrStop()
   }, [])
@@ -30,6 +28,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onNavButtonClick
   )
 
+  const slides = fansLikeDetail && fansLikeDetail?.filter((item: any) => item.totalPodcasts > 0)
+
+  console.log(slides);
+  
   return (
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>

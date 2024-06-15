@@ -4,12 +4,13 @@ import { sidebarLinks } from '@/constants'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import React from 'react'
+import { Button } from './ui/button';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 const LeftSidebar = () => {
     const pathname = usePathname();
-    const router = useRouter();
 
     return (
         <section className='left_sidebar'>
@@ -30,6 +31,14 @@ const LeftSidebar = () => {
                     </Link>
                 })}
             </nav>
+
+            <SignedOut>
+                <div className='flex-center w-full pb-14 max-lg:px-4 lg:pr-8'>
+                    <Button>
+                        <Link href='/sign-in'>Sign In</Link>
+                    </Button>
+                </div>
+            </SignedOut>
         </section>
     )
 }
