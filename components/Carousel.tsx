@@ -31,8 +31,6 @@ const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
   )
 
   const slides = fansLikeDetail && fansLikeDetail?.filter((item: any) => item.totalPodcasts > 0)
-
-  console.log(slides);
   
   if(!slides) return <LoaderSpinner />
 
@@ -55,7 +53,7 @@ const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
         ))}
       </div>
 
-        <div className="flex justify-center gap 2">
+        <div className="flex justify-center gap-2">
           {scrollSnaps.map((_, index) => (
             <DotButton
               key={index}
