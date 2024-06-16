@@ -35,7 +35,7 @@ const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
   console.log(slides);
   
   if(!slides) return <LoaderSpinner />
-  
+
   return (
     <section className="flex w-full flex-col gap-4 overflow-hidden" ref={emblaRef}>
       <div className='flex '>
@@ -47,7 +47,7 @@ const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
           >
             <Image src={item.imgURL} alt='card' fill className='absolute size-full rounded-xl border-none' />
 
-            <div>
+            <div className='glassmorphism-black relative z-10 flex flex-col rounded-b-xl p-4'>
               <h2 className='text-14 font-semibold text-white-1'>{item.podcast[0]?.podcastTitle}</h2>
               <p className='text-12 font-normal text-white-2'>{item.name}</p>
             </div>
@@ -55,19 +55,15 @@ const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
         ))}
       </div>
 
-      <div className="embla__controls">
-        <div className="embla__dots">
+        <div className="flex justify-center gap 2">
           {scrollSnaps.map((_, index) => (
             <DotButton
               key={index}
               onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected' : ''
-              )}
+              selected={index === selectedIndex}
             />
           ))}
         </div>
-      </div>
     </section>
   )
 }
