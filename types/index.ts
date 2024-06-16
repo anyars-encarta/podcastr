@@ -15,12 +15,12 @@ export interface TopPodcastersProps {
   _id: Id<"users">;
   _creationTime: number;
   email: string;
-  imageUrl: string;
+  imgURL: string;
   clerkId: string;
   name: string;
   podcast: {
     podcastTitle: string;
-    pocastId: Id<"podcasts">;
+    podcastId: Id<"podcasts">;
   }[];
   totalPodcasts: number;
 }
