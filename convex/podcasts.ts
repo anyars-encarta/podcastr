@@ -191,7 +191,7 @@ export const updatePodcastViews = mutation({
 export const deletePodcast = mutation({
     args: {
         podcastId: v.id("podcasts"),
-        imageStorageId: v.id("_storage"),
+        imgStorageId: v.id("_storage"),
         audioStorageId: v.id("_storage"),
     },
     handler: async (ctx, args) => {
@@ -201,7 +201,7 @@ export const deletePodcast = mutation({
             throw new ConvexError("Podcast not found");
         }
 
-        await ctx.storage.delete(args.imageStorageId);
+        await ctx.storage.delete(args.imgStorageId);
         await ctx.storage.delete(args.audioStorageId);
         return await ctx.db.delete(args.podcastId);
     },
