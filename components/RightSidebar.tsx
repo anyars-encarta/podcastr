@@ -30,7 +30,7 @@ const RightSidebar = () => {
         <Header 
         headerTitle='Fans Also Like'
         />
-        {/* <Carousel fansLikeDetail={topPodcasters!} /> */}
+        <Carousel fansLikeDetail={topPodcasters!} />
       </section>
     </section>
   )
