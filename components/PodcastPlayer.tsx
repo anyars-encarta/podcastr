@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { useAudio } from '@/providers/AudioProvider'
-import React from 'react'
+import { Progress } from "@/components/ui/progress"
 
 const PodcastPlayer = () => {
     const { audio } = useAudio();
@@ -13,6 +13,7 @@ const PodcastPlayer = () => {
         hidden: !audio?.audioURL
     })}>
         <h1 className='text-white-1 text-xl'>{audio?.title}</h1>
+        <Progress value={33} />
     </div>
   )
 }
