@@ -32,14 +32,14 @@ export interface PodcastProps {
   user: Id<"users">;
   podcastTitle: string;
   podcastDescription: string;
-  audioUrl: string | null;
-  imageUrl: string | null;
-  imageStorageId: Id<"_storage"> | null;
+  audioURL: string | null;
+  imgURL: string | null;
+  imgStorageId: Id<"_storage"> | null;
   author: string;
   authorId: string;
-  authorImageUrl: string;
+  authorImgURL: string;
   voicePrompt: string;
-  imagePrompt: string | null;
+  imgPrompt: string | null;
   voiceType: string;
   audioDuration: number;
   views: number;
@@ -126,7 +126,7 @@ export interface CarouselProps {
 
 export interface ProfileCardProps {
   podcastData: ProfilePodcastProps;
-  imageUrl: string;
+  imgURL: string;
   userFirstName: string;
 }
 
