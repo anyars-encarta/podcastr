@@ -25,7 +25,7 @@ const SearchBar = () => {
             <Input
                 className='input-class py-6 pl-12 focus-visible:ring-offset-orange-1'
                 placeholder='Search for podcasts...'
-                value={debouncedValue}
+                value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onLoad={() => setSearch('')}
             />
