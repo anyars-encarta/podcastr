@@ -94,7 +94,7 @@ export interface PodcastDetailPlayerProps {
   isOwner: boolean;
   imgURL: string;
   podcastId: Id<"podcasts">;
-  imageStorageId: Id<"_storage">;
+  imgStorageId: Id<"_storage">;
   audioStorageId: Id<"_storage">;
   authorImgURL: string;
   authorId: string;
@@ -102,9 +102,9 @@ export interface PodcastDetailPlayerProps {
 
 export interface AudioProps {
   title: string;
-  audioUrl: string;
+  audioURL: string;
   author: string;
-  imageUrl: string;
+  imgURL: string;
   podcastId: string;
 }
 
