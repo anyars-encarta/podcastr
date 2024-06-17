@@ -92,7 +92,7 @@
 
 LIVE DEMO
 
-> Visit the [live](https://anyars-portfolio.vercel.app/) page of the project.
+> Visit the [live](https://anyars-podcastr.vercel.app/) page of the project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
