@@ -1,11 +1,22 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input } from './ui/input'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 
 const SearchBar = () => {
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
+    const router = useRouter();
+    const pathName = usePathname();
+
+    useEffect(() => {
+        if(search) {
+            router.push(`/discover?search=${search}`)
+        } else if (!search && pathName === '/discover') {
+            router.push('/discover')
+        }
+    }, [router, pathName, search]);
 
     return (
         <div className='relative mt-8 block'>
