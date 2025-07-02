@@ -40,6 +40,8 @@
 
 > This is a Full-stack Podcast project built with NextJS and Convex, that allows users to create podcasts, generate voice and images using AI as well as search and play podcasts.
 
+that allows users to create podcasts, generate voice and images using AI as well as search and play podcasts.
+
 ## 🛠 Built With <a name="built-with"></a>
 1. Next.js
 2. Clerk
